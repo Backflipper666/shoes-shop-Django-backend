@@ -3,13 +3,20 @@ from django.db import models
 from django.utils import timezone
 import os
 
-def get_shoe_image_path(instance, filename):
+""" def get_shoe_image_path(instance, filename):
     # Generate a unique filename based on the shoe's title and ID
     unique_filename = f"{instance.title}_{instance.id}{os.path.splitext(filename)[1]}"
     # Create a directory path based on the shoe's title and ID
     directory_path = os.path.join('shoe_images', f"{instance.title}_{instance.id}")
     # Return the full file path including the directory path
     return os.path.join(directory_path, unique_filename)
+ """
+def get_shoe_image_path(instance, filename):
+    # Generate a unique filename based on the shoe's title
+    # or ID and append it to the "shoe_images" directory
+    shoe_dir = 'shoe_images'
+    unique_filename = f"{instance.title}_{instance.id}{os.path.splitext(filename)[1]}"
+    return os.path.join(shoe_dir, unique_filename)
 
 
 

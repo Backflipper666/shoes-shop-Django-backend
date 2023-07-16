@@ -17,12 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from shoes import views
-from .views import shoe_list, user_list, shoes_detail
+from .views import shoe_list, user_list, shoes_detail, my_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/shoes/', shoe_list, name='shoe_list'),
     path('api/users/', user_list, name='user_list'),
     path('api/shoes/<int:id>', shoes_detail, name='shoes_detail'),
+    path('my-view/', my_view, name='my_view'),
     
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

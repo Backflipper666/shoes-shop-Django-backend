@@ -1,9 +1,21 @@
+#views.py
 from django.http import JsonResponse
 from .models import Shoe, User
 from .serializers import ShoeSerializer, UserSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.views.static import serve
+from django.http import HttpResponse
+
+def my_view(request):
+    image_name = request.GET.get('image_name')
+    if image_name is None:
+        print('Oh noooooooooooooooooooooooooo')
+        return HttpResponse('No image name was passed')
+
+    image_path = '/static/images/{}'.format(image_name)
+    return serve(request, image_path)
 
 
 @api_view(['GET', 'POST'])

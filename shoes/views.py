@@ -2,11 +2,12 @@
 from django.http import JsonResponse
 from .models import Shoe, User
 from .serializers import ShoeSerializer, UserSerializer
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from django.views.static import serve
 from django.http import HttpResponse
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 def my_view(request):
     image_name = request.GET.get('image_name')
@@ -18,8 +19,10 @@ def my_view(request):
     return serve(request, image_path)
 
 
+@permission_classes([AllowAny]) 
 @api_view(['GET', 'POST'])
 def shoe_list(request):
+
     if request.method == 'GET':
         shoes = Shoe.objects.all()
         serializer = ShoeSerializer(shoes, many=True)
@@ -32,6 +35,7 @@ def shoe_list(request):
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated]) 
 def user_list(request):
     if request.method == 'GET':
         users = User.objects.all()

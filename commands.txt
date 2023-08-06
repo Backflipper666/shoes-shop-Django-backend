@@ -21,3 +21,5 @@
 # python manage.py makemigrations shoes
 # python manage.py migrate shoes
 # python manage.py collectstatic
+gochisosama
+ohayo!23Aa2

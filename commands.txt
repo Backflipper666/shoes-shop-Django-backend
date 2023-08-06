@@ -1,0 +1,23 @@
+{
+  "red": {
+    "sizes": {
+      "37": 10,
+      "38": 5,
+      "39": 3
+    }
+  },
+  "blue": {
+    "sizes": {
+      "37": 7,
+      "39": 3,
+      "40": 4
+    }
+  }
+}
+
+# . .venv/bin/activate
+
+# python manage.py migrate shoes zero
+# python manage.py makemigrations shoes
+# python manage.py migrate shoes
+# python manage.py collectstatic
